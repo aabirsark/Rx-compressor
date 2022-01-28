@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
           child: InkWell(
             borderRadius: BorderRadius.circular(10),
             onTap: () async {
-              context.read<ImagePickerProvider>().changeCompressingValue();
               if (context.read<ImagePickerProvider>().file != null) {
                 if (_heightController.text.isNotEmpty ||
                     _widthController.text.isNotEmpty ||
@@ -52,6 +51,9 @@ class _HomePageState extends State<HomePage> {
                     int height = int.parse(_heightController.text);
                     int width = int.parse(_widthController.text);
                     int quality = int.parse(_qualityController.text);
+                    context
+                        .read<ImagePickerProvider>()
+                        .changeCompressingValue();
 
                     var compressedFile = await Utils.testCompressFile(
                         context.read<ImagePickerProvider>().file!,
@@ -85,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                 }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text("Please enter a small value"),
+                  content: Text("All Fields are required"),
                   backgroundColor: Colors.red,
                   behavior: SnackBarBehavior.floating,
                 ));

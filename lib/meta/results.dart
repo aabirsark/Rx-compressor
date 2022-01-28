@@ -58,7 +58,25 @@ class ResultPage extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 var result = await Utils.saveFile(file);
-                print(result);
+                if (result) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      "Saved",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Colors.green,
+                    behavior: SnackBarBehavior.floating,
+                  ));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      "Saving failed",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    backgroundColor: Colors.red,
+                    behavior: SnackBarBehavior.floating,
+                  ));
+                }
               },
               child: const OptionButton(
                   icon: CupertinoIcons.download_circle,

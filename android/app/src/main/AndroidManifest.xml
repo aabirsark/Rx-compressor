@@ -4,7 +4,7 @@
 
    <application
         android:label="compresser"
-        android:name="Rx compresser"
+        android:name="${applicationName}"
         android:icon="@mipmap/compresser">
         <activity
             android:name=".MainActivity"
